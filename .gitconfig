@@ -1,0 +1,10 @@
+[core]
+	editor = vim
+	pager = less
+[color]
+	ui = true
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status

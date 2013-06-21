@@ -37,9 +37,11 @@ setopt list_packed
 setopt nolistbeep
 
 # prompt setting
-PROMPT="%F{cyan}%n%f$ "
+PROMPT="%F{cyan}%n%#%f "
 PROMPT2="[31m%n[m> "
 RPROMPT="[%F{green}%~%f]"
+# for SSH
+[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && PROMPT="%F{white}${HOST%%.*}%f ${PROMPT}"
 
 #zstyle ':completion:*' auto-description 'specify: %d'
 #zstyle ':completion:*' completer _expand _complete _correct _approximate

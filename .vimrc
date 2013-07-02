@@ -1,3 +1,4 @@
+" vim:set ts=2 et:
 "------------------------------------------------------------
 " vim固有の環境変数設定
 "------------------------------------------------------------
@@ -19,10 +20,14 @@ endif
 set path+=.,/usr/include
 
 " VIM 7.2用
-" au BufNewFile,BufRead *.json	setf javascript
+" au BufNewFile,BufRead *.json  setf javascript
 " Markdown
 " au BufNewFile,BufRead *.markdown,*.mdown,*.mkd,*.mkdn,README.md  setf markdown
 
+"------------------------------------------------------------
+" VAM
+"------------------------------------------------------------
+" call vam#ActivateAddons(['neosnippet'])
 
 "------------------------------------------------------------
 " neobundle
@@ -52,6 +57,8 @@ NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/unite.vim'
 
+NeoBundle 'MarcWeber/vim-addon-manager'
+
 " My Bundles here:
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
@@ -80,46 +87,9 @@ NeoBundle 'Lokaltog/vim-powerline'
 
 " Color Scheme
 NeoBundle 'altercation/solarized'
+NeoBundle 'jonathanfilip/vim-lucius'
 
 filetype plugin indent on     " required!
-
-""------------------------------------------------------------
-"" vundle
-""------------------------------------------------------------
-"set nocompatible
-"filetype off
-"if has("win32") || has("win64")
-"	set rtp+=$HOME/vimfiles/bundle/vundle/
-"	call vundle#rc('$HOME/vimfiles/bundle')
-"else
-"	set rtp+=~/.vim/bundle/vundle
-"	call vundle#rc()
-"endif
-"
-"Bundle 'gmarik/vundle'
-"Bundle 'Shougo/neocomplcache'
-"Bundle 'Shougo/neocomplcache-snippets-complete'
-"Bundle 'Shougo/vimshell'
-"Bundle 'Shougo/vimproc'
-"Bundle 'Shougo/unite.vim'
-"Bundle 'Shougo/vimfiler'
-"Bundle 'sudo.vim'
-"Bundle 'grep.vim'
-"" タグリスト
-""Bundle 'taglist-plus' なんか重い
-"Bundle 'Tagbar'
-"" ソース解析に便利なやつ
-"Bundle 'Source-Explorer-srcexpl.vim'
-"" バッファをタブ表示
-"Bundle 'buftabs'
-"" ウィンドウを崩さずバッファ削除する
-"Bundle 'kwbdi.vim'
-"" 変更行に印を付ける
-""Bundle 'Changed'
-"" SubVersionプラグイン
-"Bundle 'vcscommand.vim'
-"
-"filetype plugin indent on
 
 "------------------------------------------------------------
 " vimshell
@@ -199,34 +169,34 @@ let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 if !exists('g:neocomplcache_ctags_arguments_list')
     let g:neocomplcache_ctags_arguments_list = {}
 endif
-"	\ 'c' : '-R --language-force=c --c-kinds=+p',
-"	\ 'c' : '-R --language-force=c --regex-c="/^extern ([^ ]*){2,} \*?([a-zA-Z0-9_\-]*) ?\(/\2/p/"',
+" \ 'c' : '-R --language-force=c --c-kinds=+p',
+" \ 'c' : '-R --language-force=c --regex-c="/^extern ([^ ]*){2,} \*?([a-zA-Z0-9_\-]*) ?\(/\2/p/"',
 let g:neocomplcache_ctags_arguments_list  = {
-	\ 'c' : '-R --language-force=c --regex-c="/^extern ([^ ]*){2,} \*?([a-zA-Z0-9_\-]*) ?\(/\2/f/"',
-	\ }
+  \ 'c' : '-R --language-force=c --regex-c="/^extern ([^ ]*){2,} \*?([a-zA-Z0-9_\-]*) ?\(/\2/f/"',
+  \ }
 
 "シンタックス補完を無効に
 if !exists('g:neocomplcache_plugin_disable')
     let g:neocomplcache_plugin_disable = {}
 endif
 let g:neocomplcache_plugin_disable = {
-	\ 'syntax_complete' : 1,
-	\ }
+  \ 'syntax_complete' : 1,
+  \ }
 
 " インクルード補完
 if !exists('g:neocomplcache_include_paths')
     let g:neocomplcache_include_paths = {}
 endif
 let g:neocomplcache_include_paths = {
-	\ 'c'   : '.,/usr/include',
-	\ }
+  \ 'c'   : '.,/usr/include',
+  \ }
 if !exists('g:neocomplcache_include_patterns')
     let g:neocomplcache_include_patterns = {}
 endif
 let g:neocomplcache_include_patterns = {
-	\ 'c'   : '^\s*#\s*include',
-	\ 'py'  : '^\s*import',
-	\ }
+  \ 'c'   : '^\s*#\s*include',
+  \ 'py'  : '^\s*import',
+  \ }
 
 " Enable omni completion.
 autocmd FileType c setlocal omnifunc=ccomplete#Complete
@@ -268,17 +238,22 @@ inoremap <expr><C-e> neocomplcache#cancel_popup()
 "inoremap <expr><C-x><C-f>  neocomplcache#manual_filename_complete()
 
 "------------------------------------------------------------
-" neocomplcache-snippets-complete
+" neosnippet
 "------------------------------------------------------------
-" ユーザ定義
-let g:neocomplcache_snippets_dir=$HOME.'/.neocon_snippets'
-" プレースホルダ中の移動対策
-nnoremap j gj
-onoremap j gj
-xnoremap j gj
-nnoremap k gk
-onoremap k gk
-xnoremap k gk
+" " ユーザ定義
+" let g:neocomplcache_snippets_dir=$HOME.'/.neocon_snippets'
+" " プレースホルダ中の移動対策
+" nnoremap j gj
+" onoremap j gj
+" xnoremap j gj
+" nnoremap k gk
+" onoremap k gk
+" xnoremap k gk
+
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 "------------------------------------------------------------
 " unite.vim設定
@@ -344,8 +319,8 @@ endif
 "" grepオプション
 ""let g:Grep_Default_Options = '--color=auto'
 "if has("win32") || has("win64")
-"	let g:Grep_Shell_Escape_Char='^'
-"	let g:Grep_Shell_Quote_Char='"'
+" let g:Grep_Shell_Escape_Char='^'
+" let g:Grep_Shell_Quote_Char='"'
 "endif
 "nnoremap <F6> :Rgrep <C-R><C-W>
 "vnoremap <F6> y:Rgrep<CR><C-R>"
@@ -602,37 +577,37 @@ endif
 
 "------------------------------------------------------------
 if has("syntax")
-	syntax on
-	" カラー設定
-	set t_Co=256
-	set background=dark
-	"set background=light
-	"colorscheme zmrok
-	colorscheme lucius
-	"colorscheme molokai2
-	"colorscheme wombat
-	"colorscheme zenburn
-	"colorscheme desert256
-	"colorscheme oceandeep
-	"colorscheme solarized
-	"colorscheme railscasts
-	"colorscheme jellybeans
-	"colorscheme ChocolateLiquor
-	"colorscheme anotherdark
-	"colorscheme camo
-	"colorscheme mars
-	"colorscheme mydesert
-	"colorscheme default
-	" 全角スペースを表示
-	highlight ZenkakuSpace cterm=underline ctermfg=darkgray gui=underline guifg=darkgray
-	au VimEnter,WinEnter * match ZenkakuSpace /　/
-	" タブ文字
-	highlight SpecialKey ctermfg=darkgray guifg=#555555
-	" カーソル(IM有効時)
-	"highlight Cursor ctermfg=NONE ctermbg=White guifg=NONE guibg=White
-	"highlight CursorIM ctermfg=NONE ctermbg=Green guifg=NONE guibg=Green
-	highlight CursorIM ctermfg=NONE ctermbg=Red guifg=NONE guibg=Red
-	"highlight CursorLine cterm=underline ctermfg=NONE ctermbg=NONE gui=underline guifg=NONE guibg=NONE
-	" Changedプラグイン
-	highlight ChangedDefaultHl cterm=bold ctermbg=red ctermfg=white gui=bold guibg=red guifg=white
+  syntax on
+  " カラー設定
+  set t_Co=256
+  set background=dark
+  "set background=light
+  "colorscheme zmrok
+  colorscheme lucius
+  "colorscheme molokai2
+  "colorscheme wombat
+  "colorscheme zenburn
+  "colorscheme desert256
+  "colorscheme oceandeep
+  "colorscheme solarized
+  "colorscheme railscasts
+  "colorscheme jellybeans
+  "colorscheme ChocolateLiquor
+  "colorscheme anotherdark
+  "colorscheme camo
+  "colorscheme mars
+  "colorscheme mydesert
+  "colorscheme default
+  " 全角スペースを表示
+  highlight ZenkakuSpace cterm=underline ctermfg=darkgray gui=underline guifg=darkgray
+  au VimEnter,WinEnter * match ZenkakuSpace /　/
+  " タブ文字
+  highlight SpecialKey ctermfg=darkgray guifg=#555555
+  " カーソル(IM有効時)
+  "highlight Cursor ctermfg=NONE ctermbg=White guifg=NONE guibg=White
+  "highlight CursorIM ctermfg=NONE ctermbg=Green guifg=NONE guibg=Green
+  highlight CursorIM ctermfg=NONE ctermbg=Red guifg=NONE guibg=Red
+  "highlight CursorLine cterm=underline ctermfg=NONE ctermbg=NONE gui=underline guifg=NONE guibg=NONE
+  " Changedプラグイン
+  highlight ChangedDefaultHl cterm=bold ctermbg=red ctermfg=white gui=bold guibg=red guifg=white
 endif

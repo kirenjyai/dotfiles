@@ -66,3 +66,4 @@ zstyle ':completion:*' list-colors ''
 #zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 alias ls='ls -F --color'
+alias less='less -i -R'

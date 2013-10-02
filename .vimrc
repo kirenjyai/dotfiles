@@ -67,6 +67,7 @@ NeoBundle 'thinca/vim-quickrun'
 "NeoBundle 'sudo.vim'
 " QFixGrepに変更
 "NeoBundle 'grep.vim'
+NeoBundle 'rking/ag.vim'
 " タグリスト
 "NeoBundle 'taglist-plus' なんか重い
 NeoBundle 'Tagbar'
@@ -279,12 +280,15 @@ nnoremap <silent> [unite]c  :<C-u>UniteWithCurrentDir -buffer-name=files buffer 
 nnoremap <silent> [unite]b  :<C-u>UniteWithBufferDir -buffer-name=files -prompt=%\  buffer file_mru bookmark file<CR>
 nnoremap <silent> [unite]r  :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> [unite]o  :<C-u>Unite outline<CR>
-nnoremap  [unite]f  :<C-u>Unite source<CR>
+nnoremap <silent> [unite]f  :<C-u>Unite source<CR>
 " buffer
 nnoremap <silent> [unite]l  :<C-u>Unite buffer<CR>
 " yank履歴
 let g:unite_source_history_yank_enable =1  "history/yankの有効化
 nnoremap <silent> [unite]y  :<C-u>Unite history/yank<CR>
+" grep
+nnoremap <silent> [unite]g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+nnoremap <silent> [unite]r  :<C-u>UniteResume search-buffer<CR>
 
 " Start insert.
 "let g:unite_enable_start_insert = 1
@@ -315,7 +319,11 @@ let g:unite_source_file_mru_filename_format = ''
 "autocmd VimEnter * UniteSessionLoad
 
 " For ack.
-if executable('ack-grep')
+if executable('ag')
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts = '-S --nocolor --nogroup'
+  let g:unite_source_grep_recursive_opt = ''
+elseif executable('ack-grep')
   let g:unite_source_grep_command = 'ack-grep'
   let g:unite_source_grep_default_opts = '--no-heading --no-color -a'
   let g:unite_source_grep_recursive_opt = ''
@@ -421,20 +429,20 @@ let g:QFix_Height = 14
 let g:QFix_PreviewHeight = 18
 
 " GREP対象外にしたいファイル名の正規表現
-let MyGrep_ExcludeReg = '[~#]$\|\.dll$\|\.exe$\|\.lnk$\|\.o$\|\.obj$\|\.pdf$\|\.xls$|\.svn$|\.o\.cmd$'
+let MyGrep_ExcludeReg = '[~#]$\|\.dll$\|\.exe$\|\.lnk$\|\.o$\|\.obj$\|\.pdf$\|\.xls$\|\.svn$\|\.git$\|\.cmd$\|\.a$\|\.so$\|\.ko$\|tags$'
 
-"------------------------------------------------------------
-" QFixHowm
-"------------------------------------------------------------
-let g:howm_dir = '~/howm'
-let g:calendar_holidayfile = '~/howm/Sche-Hd-0000-00-00-000000.txt'
-" ファイルタイプをmarkdownにする(ファイル拡張子はtxtでもOK)
-let g:QFixHowm_FileType = 'markdown'
-"let g:QFixHowm_FileType = 'qfix_memo'
-" メモファイルのファイルエンコーディング
-let qfixmemo_fileencoding  = 'utf-8'
-" メモファイルのファイルフォーマット(改行コード)
-let qfixmemo_fileformat    = 'unix'
+""------------------------------------------------------------
+"" QFixHowm
+""------------------------------------------------------------
+"let g:howm_dir = '~/howm'
+"let g:calendar_holidayfile = '~/howm/Sche-Hd-0000-00-00-000000.txt'
+"" ファイルタイプをmarkdownにする(ファイル拡張子はtxtでもOK)
+"let g:QFixHowm_FileType = 'markdown'
+""let g:QFixHowm_FileType = 'qfix_memo'
+"" メモファイルのファイルエンコーディング
+"let qfixmemo_fileencoding  = 'utf-8'
+"" メモファイルのファイルフォーマット(改行コード)
+"let qfixmemo_fileformat    = 'unix'
 
 "------------------------------------------------------------
 " im_control.vim
@@ -459,6 +467,12 @@ let g:solarized_contrast='low'
 let g:solarized_visibility='low'
 
 "------------------------------------------------------------
+" QuickRun
+"------------------------------------------------------------
+" デフォルトキーマッピングを無効に
+let g:quickrun_no_default_key_mappings=1
+
+"------------------------------------------------------------
 " 各種細かい設定
 "------------------------------------------------------------
 " vim内部文字コード
@@ -481,8 +495,12 @@ set cursorline
 if has("win32") || has("win64")
   set mouse=a
 endif
-" grepを外部grepに指定
-set grepprg=grep\ -nH
+" grepを外部指定
+if executable('ag')
+  set grepprg=ag\ --nogroup\ -iS
+else
+  set grepprg=grep\ -nH
+endif
 " 入力がない場合にスワップファイル書き込み発生するまでの時間[ms]
 " ※Tagbarの更新間隔はこれを参照しているので短くしている
 set updatetime=500
@@ -491,6 +509,7 @@ set listchars=tab:>.,trail:-,extends:>,precedes:<,nbsp:%
 set list
 " ctags tagファイル名設定
 set tags=tags;
+nnoremap <C-]> g<C-]>
 " 履歴数
 set history=200
 "------------------------------------------------------------

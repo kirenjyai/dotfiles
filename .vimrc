@@ -89,6 +89,7 @@ NeoBundle 'Lokaltog/vim-powerline'
 " Color Scheme
 NeoBundle 'altercation/solarized'
 NeoBundle 'jonathanfilip/vim-lucius'
+NeoBundle 'vim-scripts/cpp.vim--Skvirsky'
 
 filetype plugin indent on     " required!
 

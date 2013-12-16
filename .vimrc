@@ -57,7 +57,7 @@ NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/unite.vim'
 
-NeoBundle 'MarcWeber/vim-addon-manager'
+"NeoBundle 'MarcWeber/vim-addon-manager'
 
 " My Bundles here:
 NeoBundle 'Shougo/neocomplcache'
@@ -89,6 +89,7 @@ NeoBundle 'Lokaltog/vim-powerline'
 " Color Scheme
 NeoBundle 'altercation/solarized'
 NeoBundle 'jonathanfilip/vim-lucius'
+NeoBundle 'vim-scripts/ifdef-highlighting'
 NeoBundle 'vim-scripts/cpp.vim--Skvirsky'
 
 filetype plugin indent on     " required!

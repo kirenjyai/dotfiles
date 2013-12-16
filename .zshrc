@@ -67,3 +67,5 @@ zstyle ':completion:*' list-colors ''
 
 alias ls='ls -F --color'
 alias less='less -i -R'
+alias gitvimdiff='git difftool --tool=vimdiff --no-prompt'
+alias grep='grep --color=auto'

@@ -87,7 +87,7 @@ NeoBundle 'fuenor/qfixhowm'
 NeoBundle 'Lokaltog/vim-powerline'
 
 " Color Scheme
-NeoBundle 'altercation/solarized'
+NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'jonathanfilip/vim-lucius'
 NeoBundle 'vim-scripts/ifdef-highlighting'
 NeoBundle 'vim-scripts/cpp.vim--Skvirsky'
@@ -618,7 +618,7 @@ if has("syntax")
   "set background=light
   "colorscheme zmrok
   colorscheme lucius
-  "colorscheme molokai2
+  "colorscheme molokai
   "colorscheme wombat
   "colorscheme zenburn
   "colorscheme desert256

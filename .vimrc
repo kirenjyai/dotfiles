@@ -89,6 +89,9 @@ NeoBundle 'Lokaltog/vim-powerline'
 " Color Scheme
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'jonathanfilip/vim-lucius'
+NeoBundle 'Lokaltog/vim-distinguished'
+NeoBundle 'nanotech/jellybeans.vim'
+
 NeoBundle 'vim-scripts/ifdef-highlighting'
 NeoBundle 'vim-scripts/cpp.vim--Skvirsky'
 
@@ -192,6 +195,7 @@ if !exists('g:neocomplcache_include_paths')
 endif
 let g:neocomplcache_include_paths = {
   \ 'c'   : '.,/usr/include',
+  \ 'cpp' : '.,/usr/include,/usr/include/c++/4.4',
   \ }
 if !exists('g:neocomplcache_include_patterns')
     let g:neocomplcache_include_patterns = {}
@@ -616,14 +620,17 @@ if has("syntax")
   set t_Co=256
   set background=dark
   "set background=light
-  "colorscheme zmrok
+  "colorscheme solarized
   colorscheme lucius
+  "colorscheme distinguished
+  "colorscheme jellybeans
+  "
+  "colorscheme zmrok
   "colorscheme molokai
   "colorscheme wombat
   "colorscheme zenburn
   "colorscheme desert256
   "colorscheme oceandeep
-  "colorscheme solarized
   "colorscheme railscasts
   "colorscheme jellybeans
   "colorscheme ChocolateLiquor

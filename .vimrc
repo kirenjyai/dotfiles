@@ -16,7 +16,6 @@ else
 endif
 
 " ヘッダインクルードパス設定
-" source ~/h_wimax.vim
 set path+=.,/usr/include
 
 " VIM 7.2用
@@ -82,7 +81,7 @@ NeoBundle 'kwbdi.vim'
 "" SubVersionプラグイン
 "NeoBundle 'vcscommand.vim'
 " QFixHowm
-NeoBundle 'fuenor/qfixhowm'
+"NeoBundle 'fuenor/qfixhowm'
 " Powerline for vim
 NeoBundle 'Lokaltog/vim-powerline'
 
@@ -192,12 +191,14 @@ if !exists('g:neocomplcache_include_paths')
 endif
 let g:neocomplcache_include_paths = {
   \ 'c'   : '.,/usr/include',
+  \ 'cpp' : '.,/usr/include,/usr/include/c++/4.4',
   \ }
 if !exists('g:neocomplcache_include_patterns')
     let g:neocomplcache_include_patterns = {}
 endif
 let g:neocomplcache_include_patterns = {
   \ 'c'   : '^\s*#\s*include',
+  \ 'cpp' : '^\s*#\s*include',
   \ 'py'  : '^\s*import',
   \ }
 

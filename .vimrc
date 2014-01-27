@@ -81,7 +81,7 @@ NeoBundle 'kwbdi.vim'
 "" SubVersionプラグイン
 "NeoBundle 'vcscommand.vim'
 " QFixHowm
-"NeoBundle 'fuenor/qfixhowm'
+NeoBundle 'fuenor/qfixhowm'
 " Powerline for vim
 NeoBundle 'Lokaltog/vim-powerline'
 

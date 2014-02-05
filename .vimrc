@@ -23,6 +23,8 @@ set path+=.,/usr/include
 " Markdown
 " au BufNewFile,BufRead *.markdown,*.mdown,*.mkd,*.mkdn,README.md  setf markdown
 
+au BufNewFile,BufRead syslog.debug setf messages
+
 "------------------------------------------------------------
 " VAM
 "------------------------------------------------------------
@@ -61,6 +63,7 @@ NeoBundle 'Shougo/unite.vim'
 " My Bundles here:
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'thinca/vim-quickrun'
 "NeoBundle 'sudo.vim'
@@ -81,7 +84,8 @@ NeoBundle 'kwbdi.vim'
 "" SubVersionプラグイン
 "NeoBundle 'vcscommand.vim'
 " QFixHowm
-NeoBundle 'fuenor/qfixhowm'
+"NeoBundle 'fuenor/qfixhowm'
+NeoBundle 'fuenor/qfixgrep'
 " Powerline for vim
 NeoBundle 'Lokaltog/vim-powerline'
 
@@ -433,6 +437,8 @@ let QFix_PreviewFtypeHighlight = 1
 let g:QFix_Height = 14
 " プレビューウィンドウの高さ(previewheightを使用したくない場合のみ指定)
 let g:QFix_PreviewHeight = 18
+" QuickFixウィンドウでもプレビューや絞り込みを有効化
+" let QFixWin_EnableMode = 1
 
 " GREP対象外にしたいファイル名の正規表現
 let MyGrep_ExcludeReg = '[~#]$\|\.dll$\|\.exe$\|\.lnk$\|\.o$\|\.obj$\|\.pdf$\|\.xls$\|\.svn$\|\.git$\|\.cmd$\|\.a$\|\.so$\|\.ko$\|tags$'
@@ -586,14 +592,14 @@ nnoremap <silent> <F2> :marks<CR>
 
 " QuickFix
 nmap f [QuickFix]
-nnoremap <silent> <F9> :copen<CR>
-nnoremap <silent> <F10> :cclose<CR>
-nnoremap <silent> [QuickFix]p :colder<CR>
-nnoremap <silent> [QuickFix]lp :lolder<CR>
-nnoremap <silent> [QuickFix]n :cnewer<CR>
-nnoremap <silent> [QuickFix]ln :lnewer<CR>
-nnoremap <silent> [QuickFix]j :cnext<CR>
-nnoremap <silent> [QuickFix]k :cprevious<CR>
+nnoremap <silent> <F9> :lopen<CR>
+nnoremap <silent> <F10> :lclose<CR>
+nnoremap <silent> [QuickFix]p :lolder<CR>
+"nnoremap <silent> [QuickFix]lp :lolder<CR>
+nnoremap <silent> [QuickFix]n :lnewer<CR>
+"nnoremap <silent> [QuickFix]ln :lnewer<CR>
+nnoremap <silent> [QuickFix]j :lnext<CR>
+nnoremap <silent> [QuickFix]k :lprevious<CR>
 
 if has("win32") || has("win64")
   " ESC押下時にIM OFF(im_control.vimを使うのでコメントアウト)

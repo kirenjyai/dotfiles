@@ -46,7 +46,8 @@ if has('vim_starting')
     call neobundle#rc(expand('~/vimfiles/bundle/'))
   else
     set runtimepath+=~/.vim/bundle/neobundle.vim/
-    call neobundle#rc(expand('~/.vim/bundle/'))
+    "call neobundle#rc(expand('~/.vim/bundle/'))
+    call neobundle#begin(expand('~/.vim/bundle/'))
   endif
 endif
 " let NeoBundle manage NeoBundle
@@ -97,6 +98,8 @@ NeoBundle 'nanotech/jellybeans.vim'
 
 NeoBundle 'vim-scripts/ifdef-highlighting'
 NeoBundle 'vim-scripts/cpp.vim--Skvirsky'
+
+call neobundle#end()
 
 filetype plugin indent on     " required!
 
@@ -440,6 +443,8 @@ let g:QFix_PreviewHeight = 18
 " QuickFixウィンドウでもプレビューや絞り込みを有効化
 " let QFixWin_EnableMode = 1
 
+" カーソル位置の単語を拾う／拾わない
+let MyGrep_DefaultSearchWord = 1
 " GREP対象外にしたいファイル名の正規表現
 let MyGrep_ExcludeReg = '[~#]$\|\.dll$\|\.exe$\|\.lnk$\|\.o$\|\.obj$\|\.pdf$\|\.xls$\|\.svn$\|\.git$\|\.cmd$\|\.a$\|\.so$\|\.ko$\|tags$'
 

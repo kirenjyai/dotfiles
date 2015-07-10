@@ -66,7 +66,15 @@ zstyle ':completion:*' list-colors ''
 #zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 #zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
+# alias設定
 alias ls='ls -F --color'
 alias less='less -i -R'
 alias gitvimdiff='git difftool --tool=vimdiff --no-prompt'
 alias grep='grep --color=auto'
+alias grep-noobj='grep -Ev "\.(Po|o|a|dep|depend)$"'
+
+if [ -f ~/.bash_aliases ]; then
+  source ~/.bash_aliases
+fi
+
+# EOF

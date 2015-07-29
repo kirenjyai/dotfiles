@@ -3,7 +3,6 @@
 stty stop undef
 export LANG=ja_JP.UTF-8
 export EDITOR=vim
-#export PYTHONSTARTUP=.pythonrc.py
 
 # Set up the prompt
 
@@ -64,8 +63,8 @@ zstyle ':completion:*' list-colors ''
 #zstyle ':completion:*' verbose true
 #
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-#zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
-#zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
+zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+#zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
 
 # alias設定
 alias ls='ls -F --color'
@@ -78,9 +77,20 @@ if [ -f ~/.bash_aliases ]; then
   source ~/.bash_aliases
 fi
 
+# python
 if [ -f ~/.pythonrc.py ]; then
   export PYTHONSTARTUP=$HOME/.pythonrc.py
-  source ~/.pythonrc.py
+fi
+
+# Virtualenvwrapper
+if [ -f /usr/bin/virtualenvwrapper.sh ]; then
+    export WORKON_HOME=$HOME/.virtualenvs
+    source /usr/bin/virtualenvwrapper.sh
+fi
+
+# Pythonz
+if [ -s $HOME/.pythonz/etc/bashrc ]; then
+    source $HOME/.pythonz/etc/bashrc
 fi
 
 # EOF

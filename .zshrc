@@ -3,7 +3,7 @@
 stty stop undef
 export LANG=ja_JP.UTF-8
 export EDITOR=vim
-export PYTHONSTARTUP=.pythonrc.py
+#export PYTHONSTARTUP=.pythonrc.py
 
 # Set up the prompt
 
@@ -63,8 +63,9 @@ zstyle ':completion:*' list-colors ''
 #zstyle ':completion:*' use-compctl false
 #zstyle ':completion:*' verbose true
 #
-#zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 #zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+#zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
 
 # alias設定
 alias ls='ls -F --color'
@@ -75,6 +76,11 @@ alias grep-noobj='grep -Ev "\.(Po|o|a|dep|depend)$"'
 
 if [ -f ~/.bash_aliases ]; then
   source ~/.bash_aliases
+fi
+
+if [ -f ~/.pythonrc.py ]; then
+  export PYTHONSTARTUP=$HOME/.pythonrc.py
+  source ~/.pythonrc.py
 fi
 
 # EOF

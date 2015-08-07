@@ -13,10 +13,9 @@ if has("win32") || has("win64")
   "let $PATH="C:/Programs/vim73-kaoriya-win32;".$PATH
 else
   let $TEMP="/tmp"
+  " ヘッダインクルードパス設定
+  set path+=.,/usr/include
 endif
-
-" ヘッダインクルードパス設定
-set path+=.,/usr/include
 
 " VIM 7.2用
 " au BufNewFile,BufRead *.json  setf javascript
@@ -56,12 +55,9 @@ endif
 " recommended to install
 NeoBundle 'Shougo/vimproc'
 " after install, turn shell ~/.vim/bundle/vimproc, (n,g)make -f your_machines_makefile
-NeoBundle 'Shougo/vimshell'
+"NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/unite.vim'
-
 "NeoBundle 'MarcWeber/vim-addon-manager'
-
-" My Bundles here:
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
@@ -96,26 +92,29 @@ NeoBundle 'jonathanfilip/vim-lucius'
 NeoBundle 'Lokaltog/vim-distinguished'
 NeoBundle 'nanotech/jellybeans.vim'
 
+" C, C++
 NeoBundle 'vim-scripts/ifdef-highlighting'
 NeoBundle 'vim-scripts/cpp.vim--Skvirsky'
+" python
+NeoBundle 'davidhalter/jedi-vim'
 
 call neobundle#end()
 
 filetype plugin indent on     " required!
 
-"------------------------------------------------------------
-" vimshell
-"------------------------------------------------------------
-" Initialize execute file list.
-let g:vimshell_execute_file_list = {}
-call vimshell#set_execute_file('txt,vim,c,h,cpp,d,xml,java,js', 'vim')
-let g:vimshell_execute_file_list['rb'] = 'ruby'
-let g:vimshell_execute_file_list['pl'] = 'perl'
-let g:vimshell_execute_file_list['py'] = 'python'
-" call vimshell#set_execute_file('html,xhtml', 'gexe firefox')
-
-" 起動キー
-nnoremap <silent><Space>s :<C-u>VimShellPop<CR>
+""------------------------------------------------------------
+"" vimshell
+""------------------------------------------------------------
+"" Initialize execute file list.
+"let g:vimshell_execute_file_list = {}
+"call vimshell#set_execute_file('txt,vim,c,h,cpp,d,xml,java,js', 'vim')
+"let g:vimshell_execute_file_list['rb'] = 'ruby'
+"let g:vimshell_execute_file_list['pl'] = 'perl'
+"let g:vimshell_execute_file_list['py'] = 'python'
+"" call vimshell#set_execute_file('html,xhtml', 'gexe firefox')
+"
+"" 起動キー
+"nnoremap <silent><Space>s :<C-u>VimShellPop<CR>
 
 "------------------------------------------------------------
 " vimfiler
@@ -209,7 +208,6 @@ endif
 let g:neocomplcache_include_patterns = {
   \ 'c'   : '^\s*#\s*include',
   \ 'cpp' : '^\s*#\s*include',
-  \ 'py'  : '^\s*import',
   \ }
 
 " Enable omni completion.
@@ -218,7 +216,7 @@ autocmd FileType cpp setlocal omnifunc=ccomplete#Complete
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+"autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 " autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 

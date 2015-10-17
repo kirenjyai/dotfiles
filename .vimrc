@@ -486,6 +486,12 @@ let g:solarized_visibility='low'
 "------------------------------------------------------------
 " デフォルトキーマッピングを無効に
 let g:quickrun_no_default_key_mappings=1
+let g:quickrun_config = {
+            \  "_" : {
+            \    "outputter/buffer/split" : ":botright 20sp",
+            \    "hook/time/enable" : 1
+            \  },
+            \}
 
 "------------------------------------------------------------
 " 各種細かい設定

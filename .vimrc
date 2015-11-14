@@ -216,7 +216,11 @@ autocmd FileType cpp setlocal omnifunc=ccomplete#Complete
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-"autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+if !exists('g:jedi')
+  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+else
+  autocmd FileType python setlocal omnifunc=jedi#completions
+endif
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 " autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 

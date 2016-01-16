@@ -5,8 +5,7 @@
 if has("win32") || has("win64")
   set path+=C:/Programs/vim73-kaoriya-win32
   "set shell='C:\MinGW\msys\1.0\bin\bash.exe'
-  let $TMP=$HOME."/tmp"
-  let $TEMP=$TMP
+  let $TEMP=$HOME."/tmp"
   let $PATH="C:/MinGW/msys/1.0/bin;C:/MinGW/msys/1.0/mingw/bin;".$PATH
   let $PATH="C:/Python27;".$PATH
   let $PATH="C:/Programs/ctags;".$PATH
@@ -92,7 +91,10 @@ NeoBundle 'jonathanfilip/vim-lucius'
 NeoBundle 'Lokaltog/vim-distinguished'
 NeoBundle 'nanotech/jellybeans.vim'
 
-" C, C++
+" git
+NeoBundle 'tpope/vim-fugitive'
+
+" C言語
 NeoBundle 'vim-scripts/ifdef-highlighting'
 NeoBundle 'vim-scripts/cpp.vim--Skvirsky'
 " python
@@ -216,7 +218,7 @@ autocmd FileType cpp setlocal omnifunc=ccomplete#Complete
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-if !exists('g:jedi')
+if !isdirectory(expand("~/.vim/bundle/jedi-vim/"))
   autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 else
   autocmd FileType python setlocal omnifunc=jedi#completions

@@ -14,8 +14,8 @@ prompt walters
 bindkey -e
 
 # Keep 50000 lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE=50000
-SAVEHIST=50000
+HISTSIZE=500000
+SAVEHIST=500000
 HISTFILE=~/.zsh_history
 setopt hist_ignore_dups
 setopt share_history
@@ -64,7 +64,7 @@ zstyle ':completion:*' list-colors ''
 #
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
-#zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
+zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
 
 # alias設定
 alias ls='ls -F --color'

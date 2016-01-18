@@ -448,7 +448,7 @@ let g:QFix_PreviewHeight = 18
 " カーソル位置の単語を拾う／拾わない
 let MyGrep_DefaultSearchWord = 1
 " GREP対象外にしたいファイル名の正規表現
-let MyGrep_ExcludeReg = '[~#]$\|\.dll$\|\.exe$\|\.lnk$\|\.o$\|\.obj$\|\.pdf$\|\.xls$\|\.svn$\|\.git$\|\.cmd$\|\.a$\|\.so$\|\.ko$\|tags$'
+let MyGrep_ExcludeReg = '[~#]$\|\.dll$\|\.exe$\|\.lnk$\|\.o$\|\.obj$\|\.pdf$\|\.xls$\|\.svn$\|\.git$\|\.cmd$\|\.a$\|\.so$\|\.ko$\|\.pyc$\|tags$'
 
 ""------------------------------------------------------------
 "" QFixHowm

@@ -2,9 +2,17 @@
 	editor = vim
 	pager = less
 [color]
-	ui = true
+	ui = auto
 [alias]
 	co = checkout
 	br = branch
 	ci = commit
 	st = status
+	llr = log --oneline --left-right
+[http]
+	sslVerify = false
+	postBuffer = 524288000
+[i18n]
+	commitEncoding = utf-8
+[diff]
+	tool = vimdiff

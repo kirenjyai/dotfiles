@@ -83,7 +83,7 @@ NeoBundle 'kwbdi.vim'
 "NeoBundle 'fuenor/qfixhowm'
 NeoBundle 'fuenor/qfixgrep'
 " Powerline for vim
-NeoBundle 'Lokaltog/vim-powerline'
+" NeoBundle 'Lokaltog/vim-powerline'
 
 " Color Scheme
 NeoBundle 'altercation/vim-colors-solarized'
@@ -543,6 +543,8 @@ set history=200
 " ステータスライン表示内容
 "set statusline=%F%r%h%=%l%c%q%n
 set statusline=\[%n]%F%r%m%h%w%=\[%Y]\[%{(&fenc!=''?&fenc:&enc)}/%{&ff}]\[%3l,%3v][%L,%3p%%]
+" vim-fugitive
+set statusline+=%{fugitive#statusline()}
 " 「日本語入力固定モード」がオンの場合、ステータス行にメッセージ表示
 set statusline+=%{IMStatus('[IM\ ON\ FixMode]')}
 " im_control.vimがない環境でもエラーを出さないためのダミー関数
@@ -559,8 +561,10 @@ set laststatus=2
 
 "------------------------------------------------------------
 " ファイルオープン時にカレントディレクトリ移動
-" au BufEnter *.c,*.h,*.py,*.sh,*.html execute ":lcd " . expand("%:p:h")
-au BufEnter * execute ":lcd " . expand("%:p:h")
+" au BufEnter *.c,*.cpp,*.h,*.py,*.sh,*.html execute ":lcd " . expand("%:p:h")
+" au BufEnter * execute ":lcd " . expand("%:p:h")
+" fugitiveの:Gdiff時のエラー対策
+au BufEnter * if expand('%:p') !~ '://' | lcd %:p:h | endif
 
 "------------------------------------------------------------
 " バックアップ設定

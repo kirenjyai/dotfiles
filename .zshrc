@@ -36,7 +36,11 @@ setopt correct
 setopt list_packed
 setopt nolistbeep
 
+#setopt autolist
+#setopt automenu
 setopt pushd_ignore_dups
+#setopt glob
+#setopt glob_complete
 setopt extended_glob
 
 # prompt setting
@@ -46,18 +50,18 @@ RPROMPT="[%F{green}%~%f]"
 # for SSH
 [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && PROMPT="%F{white}${HOST%%.*}%f ${PROMPT}"
 
+zstyle ':completion:*:default' menu select=2
 #zstyle ':completion:*' auto-description 'specify: %d'
 #zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %B%d%b'
 zstyle ':completion:*' group-name ''
-zstyle ':completion:*' menu select=2
 if [ -f ~/.dircolors ]; then
   eval "$(dircolors ~/.dircolors)"
 else
   eval "$(dircolors -b)"
 fi
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' list-colors ''
+zstyle ':completion:*:default' list-colors "${(s.:.)LS_COLORS}"
+#zstyle ':completion:*' list-colors ''
 #zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}' 'r:|[._-]=**'
 #zstyle ':completion:*' menu select=long
@@ -70,6 +74,12 @@ zstyle ':completion:*:*:*:processes' menu yes select=2
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
+
+# 補完時にhjklで選択
+#bindkey -M menuselect 'h' vi-backward-char
+#bindkey -M menuselect 'j' vi-down-line-or-history
+#bindkey -M menuselect 'k' vi-up-line-or-history
+#bindkey -M menuselect 'l' vi-forward-char
 
 # alias設定
 alias ls='ls -F --color'
@@ -91,6 +101,9 @@ fi
 if [ -f /usr/bin/virtualenvwrapper.sh ]; then
     export WORKON_HOME=$HOME/.virtualenvs
     source /usr/bin/virtualenvwrapper.sh
+elif [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+    export WORKON_HOME=$HOME/.virtualenvs
+    source /usr/local/bin/virtualenvwrapper.sh
 fi
 
 # Pythonz

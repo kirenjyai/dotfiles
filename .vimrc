@@ -222,6 +222,7 @@ if !isdirectory(expand("~/.vim/bundle/jedi-vim/"))
   autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 else
   autocmd FileType python setlocal omnifunc=jedi#completions
+  autocmd FileType python setlocal completeopt-=preview
 endif
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 " autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
